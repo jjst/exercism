@@ -1,7 +1,7 @@
 module DNA where
 
-toRNA :: [Char] -> [Char]
-toRNA str = map complement str
+toRNA :: String -> String
+toRNA = map complement
 
 complement :: Char -> Char
 complement 'G' = 'C'
