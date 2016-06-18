@@ -27,6 +27,14 @@ cabal.project.local
 /rust/**/target/
 
 
+### Elm ###
+# elm-package generated files
+elm-stuff/
+# elm-repl generated files
+repl-temp-*
+build.js
+
+
 ### Vim ###
 # swap
 [._]*.s[a-w][a-z]
