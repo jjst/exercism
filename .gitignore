@@ -33,6 +33,7 @@ elm-stuff/
 # elm-repl generated files
 repl-temp-*
 build.js
+node_modules/
 
 
 ### Vim ###
