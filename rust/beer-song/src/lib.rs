@@ -1,6 +1,8 @@
 
 pub fn verse(bottle_count: u8) -> String {
-    if bottle_count > 1 {
+    if bottle_count > 2 {
+        "8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n".to_string()
+    } else if bottle_count > 1 {
         "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n".to_string()
     } else if bottle_count > 0 {
         "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n".to_string()
