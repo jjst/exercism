@@ -1,6 +1,21 @@
 extern crate beer_song as beer;
 
 #[test]
+fn test_fmt_bottle_count_0() {
+    assert_eq!(beer::fmt_bottle_count(0), "no more bottles");
+}
+
+#[test]
+fn test_fmt_bottle_count_1() {
+    assert_eq!(beer::fmt_bottle_count(1), "1 bottle");
+}
+
+#[test]
+fn test_fmt_bottle_count_2() {
+    assert_eq!(beer::fmt_bottle_count(2), "2 bottles");
+}
+
+#[test]
 fn test_verse_0() {
     assert_eq!(beer::verse(0), "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
 }
@@ -22,7 +37,7 @@ fn test_verse_8() {
 
 #[test]
 fn test_verse_99() {
-    assert_eq!(beer::verse(8), "99 bottles of beer on the wall, 99 bottles of beer.\nTake one down and pass it around, 98 bottles of beer on the wall.\n");
+    assert_eq!(beer::verse(99), "99 bottles of beer on the wall, 99 bottles of beer.\nTake one down and pass it around, 98 bottles of beer on the wall.\n");
 }
 
 #[test]
