@@ -2,17 +2,22 @@ extern crate beer_song as beer;
 
 #[test]
 fn test_fmt_bottle_count_0() {
-    assert_eq!(beer::fmt_bottle_count(0), "no more bottles");
+    assert_eq!(beer::fmt_bottle_count(0, false), "no more bottles");
+}
+
+#[test]
+fn test_fmt_bottle_count_0_capitalized() {
+    assert_eq!(beer::fmt_bottle_count(0, true), "No more bottles");
 }
 
 #[test]
 fn test_fmt_bottle_count_1() {
-    assert_eq!(beer::fmt_bottle_count(1), "1 bottle");
+    assert_eq!(beer::fmt_bottle_count(1, false), "1 bottle");
 }
 
 #[test]
 fn test_fmt_bottle_count_2() {
-    assert_eq!(beer::fmt_bottle_count(2), "2 bottles");
+    assert_eq!(beer::fmt_bottle_count(2, false), "2 bottles");
 }
 
 #[test]
