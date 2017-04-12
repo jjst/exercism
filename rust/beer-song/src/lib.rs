@@ -25,6 +25,6 @@ pub fn verse(bottle_count: u8) -> String {
 }
 
 pub fn sing(start: u8, end: u8) -> String {
-    let mut verses = (end..start + 1).rev().map(verse).collect::<Vec<String>>();
+    let verses = (end..start + 1).rev().map(verse).collect::<Vec<String>>();
     verses.join("\n")
 }
