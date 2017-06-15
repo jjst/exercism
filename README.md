@@ -1,3 +1,3 @@
 # Exercism puzzles
 
-Programming puzzles from http://exercism.io/.
+(Solutions to) programming puzzles from http://exercism.io/.
