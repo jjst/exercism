@@ -1,3 +1,5 @@
+use std::iter;
+
 pub fn encode(s: &str) -> String {
     match s.chars().next() {
         Some(first_char) => {
@@ -17,6 +19,21 @@ pub fn encode(s: &str) -> String {
 }
 
 pub fn decode(s: &str) -> String {
-    "".to_string()
+    let mut chars = s.chars();
+    match chars.next() {
+        Some(next_char) => {
+            let mut decoded: String = match next_char.to_digit(10) {
+                Some(num_occurences) => {
+                    iter::repeat(chars.next().unwrap()).take(num_occurences as usize).collect()
+                }
+                None => next_char.to_string()
+            };
+            let rest: String = chars.collect();
+            let decoded_rest = decode(&rest);
+            decoded.push_str(&decoded_rest);
+            decoded
+        }
+        None => String::new()
+    }
 }
 

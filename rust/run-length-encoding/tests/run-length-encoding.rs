@@ -36,25 +36,21 @@ fn test_encode_lowercase_characters() {
 // decoding tests
 
 #[test]
-#[ignore]
 fn test_decode_empty_string() {
     assert_eq!("", rle::decode(""));
 }
 
 #[test]
-#[ignore]
 fn test_decode_single_characters_only() {
     assert_eq!("XYZ", rle::decode("XYZ"));
 }
 
 #[test]
-#[ignore]
 fn test_decode_string_with_no_single_characters() {
     assert_eq!("AABBBCCCC", rle::decode("2A3B4C"));
 }
 
 #[test]
-#[ignore]
 fn test_decode_single_characters_with_repeated_characters() {
     assert_eq!("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB",
                rle::decode("12WB12W3B24WB"));
