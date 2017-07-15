@@ -57,13 +57,11 @@ fn test_decode_single_characters_with_repeated_characters() {
 }
 
 #[test]
-#[ignore]
 fn test_decode_multiple_whitespace_mixed_in_string() {
     assert_eq!("  hsqq qww  ", rle::decode("2 hs2q q2w2 "));
 }
 
 #[test]
-#[ignore]
 fn test_decode_lower_case_string() {
     assert_eq!("aabbbcccc", rle::decode("2a3b4c"));
 }
@@ -71,7 +69,6 @@ fn test_decode_lower_case_string() {
 // consistency test
 
 #[test]
-#[ignore]
 fn test_consistency() {
     assert_eq!("zzz ZZ  zZ", rle::decode(rle::encode("zzz ZZ  zZ").as_str()));
 }

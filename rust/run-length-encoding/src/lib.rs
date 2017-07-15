@@ -19,21 +19,18 @@ pub fn encode(s: &str) -> String {
 }
 
 pub fn decode(s: &str) -> String {
-    let mut chars = s.chars();
-    match chars.next() {
-        Some(next_char) => {
-            let mut decoded: String = match next_char.to_digit(10) {
-                Some(num_occurences) => {
-                    iter::repeat(chars.next().unwrap()).take(num_occurences as usize).collect()
-                }
-                None => next_char.to_string()
-            };
-            let rest: String = chars.collect();
-            let decoded_rest = decode(&rest);
-            decoded.push_str(&decoded_rest);
-            decoded
-        }
-        None => String::new()
+    if s.is_empty() {
+        String::new()
+    } else {
+        let digit_string: String = s.chars().take_while(|c| c.is_digit(10)).collect();
+        let num_occurences = digit_string.parse::<u8>().unwrap_or(1);
+        let mut chars = s.chars();
+        let char_to_repeat = chars.nth(digit_string.len()).unwrap();
+        let mut decoded: String = iter::repeat(char_to_repeat).take(num_occurences as usize).collect();
+        let rest: String = chars.collect();
+        let decoded_rest = decode(&rest);
+        decoded.push_str(&decoded_rest);
+        decoded
     }
 }
 
