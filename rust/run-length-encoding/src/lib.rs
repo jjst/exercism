@@ -1,20 +1,30 @@
 use std::iter;
 
-pub fn encode(s: &str) -> String {
-    match s.chars().next() {
-        Some(first_char) => {
-            let count = s.chars().take_while(|&c| c == first_char).count();
-            let rest: String = s.chars().skip(count).collect();
-            let mut encoded = String::with_capacity(1);
-            if count > 1 {
-                encoded.push_str(&count.to_string());
+pub fn encode(to_encode: &str) -> String {
+    if to_encode.is_empty() {
+        String::new()
+    } else {
+        let mut encoded = String::with_capacity(to_encode.len());
+        let mut chars = to_encode.chars();
+        let mut previous_char = chars.next().unwrap();
+        let mut num_occurences = 1;
+        for chr in chars {
+            if chr == previous_char {
+                num_occurences += 1;
+            } else {
+                if num_occurences > 1 {
+                    encoded.push_str(&num_occurences.to_string());
+                }
+                encoded.push(previous_char);
+                num_occurences = 1;
             }
-            encoded.push(first_char);
-            let encoded_rest = encode(&rest);
-            encoded.push_str(&encoded_rest);
-            encoded
+            previous_char = chr;
         }
-        None => String::new()
+        if num_occurences > 1 {
+            encoded.push_str(&num_occurences.to_string());
+        }
+        encoded.push(previous_char);
+        encoded
     }
 }
 
