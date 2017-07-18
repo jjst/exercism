@@ -44,4 +44,3 @@ pub fn decode(s: &str) -> String {
         decoded
     }
 }
-

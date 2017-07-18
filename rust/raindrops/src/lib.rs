@@ -1,4 +1,3 @@
-
 pub fn raindrops(number: u32) -> String {
     let mut r = String::new();; //String::from("Hello, ");
     if number % 3 == 0 {

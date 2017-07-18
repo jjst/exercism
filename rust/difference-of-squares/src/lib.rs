@@ -1,4 +1,3 @@
-
 pub fn square_of_sum(upper_bound: u16) -> u64 {
     let sum = (1..(upper_bound + 1) as u64).fold(0, |res, acc| res + acc);
     sum*sum

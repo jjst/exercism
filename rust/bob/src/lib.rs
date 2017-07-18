@@ -1,4 +1,3 @@
-
 pub fn reply(sentence: &str) -> String {
     if sentence.ends_with("?") {
         "Sure.".to_string()
@@ -10,4 +9,3 @@ pub fn reply(sentence: &str) -> String {
         "Whatever.".to_string()
     }
 }
-

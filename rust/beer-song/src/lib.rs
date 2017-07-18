@@ -1,4 +1,3 @@
-
 pub fn fmt_bottle_count(bottle_count: u8, capitalize: bool) -> String {
     if bottle_count > 1 {
         format!("{} bottles", bottle_count)
