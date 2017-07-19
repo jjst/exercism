@@ -1,30 +1,31 @@
 use std::iter;
 
 pub fn encode(to_encode: &str) -> String {
-    if to_encode.is_empty() {
-        String::new()
-    } else {
-        let mut encoded = String::with_capacity(to_encode.len());
-        let mut chars = to_encode.chars();
-        let mut previous_char = chars.next().unwrap();
-        let mut num_occurences = 1;
-        for chr in chars {
-            if chr == previous_char {
-                num_occurences += 1;
-            } else {
-                if num_occurences > 1 {
-                    encoded.push_str(&num_occurences.to_string());
+    let mut chars = to_encode.chars();
+    match chars.next() {
+        None => String::new(),
+        Some(first_char) => {
+            let mut previous_char = first_char;
+            let mut num_occurences = 1;
+            let mut encoded = String::with_capacity(to_encode.len());
+            for chr in chars {
+                if chr == previous_char {
+                    num_occurences += 1;
+                } else {
+                    if num_occurences > 1 {
+                        encoded.push_str(&num_occurences.to_string());
+                    }
+                    encoded.push(previous_char);
+                    num_occurences = 1;
                 }
-                encoded.push(previous_char);
-                num_occurences = 1;
+                previous_char = chr;
             }
-            previous_char = chr;
+            if num_occurences > 1 {
+                encoded.push_str(&num_occurences.to_string());
+            }
+            encoded.push(previous_char);
+            encoded
         }
-        if num_occurences > 1 {
-            encoded.push_str(&num_occurences.to_string());
-        }
-        encoded.push(previous_char);
-        encoded
     }
 }
 
