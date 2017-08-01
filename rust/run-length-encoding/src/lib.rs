@@ -1,5 +1,3 @@
-use std::iter;
-
 pub fn encode(to_encode: &str) -> String {
     let mut chars = to_encode.chars();
     match chars.next() {
@@ -33,14 +31,20 @@ pub fn decode(s: &str) -> String {
     if s.is_empty() {
         String::new()
     } else {
-        let digit_string: String = s.chars().take_while(|c| c.is_digit(10)).collect();
-        let num_occurences = digit_string.parse::<u8>().unwrap_or(1);
-        let mut chars = s.chars();
-        let char_to_repeat = chars.nth(digit_string.len()).unwrap();
-        let mut decoded: String = iter::repeat(char_to_repeat).take(num_occurences as usize).collect();
-        let rest: String = chars.collect();
-        let decoded_rest = decode(&rest);
-        decoded.push_str(&decoded_rest);
+        let mut decoded: String = String::with_capacity(s.len());
+        let mut to_decode = String::from(s);
+        while !to_decode.is_empty() {
+            to_decode = {
+                let digit_string: String = to_decode.chars().take_while(|c| c.is_digit(10)).collect();
+                let num_occurences = digit_string.parse::<u8>().unwrap_or(1);
+                let mut chars = to_decode.chars();
+                let char_to_repeat = chars.nth(digit_string.len()).unwrap();
+                for _ in 0..num_occurences {
+                    decoded.push(char_to_repeat);
+                }
+                chars.collect()
+            }
+        }
         decoded
     }
 }
