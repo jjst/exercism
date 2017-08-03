@@ -1,4 +1,4 @@
-pub fn nth(n: u8) -> Result<u32, String> {
+pub fn nth(n: u16) -> Result<u32, String> {
     let mut count = 0;
     let mut i = 2;
     loop {
@@ -13,5 +13,5 @@ pub fn nth(n: u8) -> Result<u32, String> {
 }
 
 fn is_prime(number: u32) -> bool {
-   (2..number).all(|x| number % x != 0)
+   (2..((number as f32).sqrt() as u32 + 1)).all(|x| number % x != 0)
 }

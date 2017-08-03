@@ -11,13 +11,11 @@ fn test_second_prime() {
 }
 
 #[test]
-#[ignore]
 fn test_sixth_prime() {
     assert_eq!(np::nth(6), Ok(13));
 }
 
 #[test]
-#[ignore]
 fn test_big_prime() {
     assert_eq!(np::nth(10001), Ok(104743));
 }
