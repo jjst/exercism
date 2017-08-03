@@ -21,7 +21,6 @@ fn test_big_prime() {
 }
 
 #[test]
-#[ignore]
 fn test_zeroth_prime() {
     assert!(np::nth(0).is_err());
 }
