@@ -6,7 +6,6 @@ fn test_first_prime() {
 }
 
 #[test]
-#[ignore]
 fn test_second_prime() {
     assert_eq!(np::nth(2), Ok(3));
 }
