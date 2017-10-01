@@ -12,16 +12,19 @@ fn test_triplets_summing_to_initial() {
 fn test_triplets_summing_to_last() {
     assert_eq!(
         pythagorean_triplet::triplets_summing_to(1000).last(), 
-        Some((332, 335, 333))
+        Some((333, 333, 334))
     );
 }
 
+#[test]
+fn test_triplets_summing_to_c_gt_b_gt_a() {
+    for (a, b, c) in pythagorean_triplet::triplets_summing_to(1000) {
+        assert!(c >= a && c >= b, "{} {} {}", a, b, c);
+    }
+}
 
 #[test]
 fn test_triplets_summing_to_first_ten() {
-    for ts in pythagorean_triplet::triplets_summing_to(1000) {
-        println!("{:?}", ts);
-    }
     let first_ten : Vec<(u32, u32, u32)> = 
         pythagorean_triplet::triplets_summing_to(1000)
             .take(10)
@@ -52,10 +55,9 @@ fn test_is_pythagorean_triplet_3() {
 
 #[test]
 fn test_pythagorean_triplet_summing_to() {
-    let all: Vec<(u32, u32, u32)> = 
-        pythagorean_triplet::triplets_summing_to(30)
-            .collect();
-    println!("{:?}", all);
+    for i in pythagorean_triplet::triplets_summing_to(30) {
+        println!("{:?}", i);
+    }
     assert_eq!(
         pythagorean_triplet::pythagorean_triplet_summing_to(30), Some((5, 12, 13))
     );
