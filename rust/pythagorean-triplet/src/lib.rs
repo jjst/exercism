@@ -1,6 +1,5 @@
 use std::cmp;
 
-
 pub fn find() -> Option<u32> {
     pythagorean_triplet_summing_to(1000).map(|(a, b, c)| a * b * c)
 }
@@ -44,4 +43,3 @@ pub fn triplets_summing_to(sum: u32) -> TripletsSummingTo {
 pub fn is_pythagorean_triplet(a: u32, b: u32, c: u32) -> bool {
     a*a + b*b == c*c
 }
-
