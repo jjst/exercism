@@ -30,15 +30,18 @@ fn test_fourteen() {
 }
 
 #[test]
-#[ignore]
 fn test_twenty() {
     assert_eq!(say::encode(20), String::from("twenty"));
 }
 
 #[test]
-#[ignore]
 fn test_twenty_two() {
     assert_eq!(say::encode(22), String::from("twenty-two"));
+}
+
+#[test]
+fn test_ninety_eight() {
+    assert_eq!(say::encode(98), String::from("ninety-eight"));
 }
 
 #[test]
