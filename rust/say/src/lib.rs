@@ -4,7 +4,7 @@
 //
 
 pub fn encode(number: u32) -> String {
-    if number < 20 {
+    if number < 10 {
         let s = match number {
             0 => "zero",
             1 => "one",
@@ -16,16 +16,6 @@ pub fn encode(number: u32) -> String {
             7 => "seven",
             8 => "eight",
             9 => "nine",
-            10 => "ten",
-            11 => "eleven",
-            12 => "twelve",
-            13 => "thirteen",
-            14 => "fourteen",
-            15 => "fifteen",
-            16 => "sixteen",
-            17 => "seventeen",
-            18 => "eighteen",
-            19 => "nineteen",
             _ => panic!("impossible")
         };
         String::from(s)
@@ -33,21 +23,51 @@ pub fn encode(number: u32) -> String {
         let digits = digits(number);
         let ones = digits[0];
         let tens = digits[1];
-        let encoded_tens = match tens {
-            2 => "twenty",
-            3 => "thirty",
-            4 => "forty",
-            5 => "fifty",
-            6 => "sixty",
-            7 => "seventy",
-            8 => "eighty",
-            9 => "ninety",
-            other => panic!("unsupported digit for tens : {}", other)
+        let mut s = String::new();
+        match digits.get(2) {
+            Some(&d) => {
+                s.push_str(&encode(d as u32));
+                s.push_str(" hundred");
+                if ones != 0 || tens != 0 {
+                    s.push(' ');
+                }
+            }
+            None => ()
         };
-        let mut s = String::from(encoded_tens);
-        if ones > 0 {
-            s.push('-');
-            s.push_str(&encode(ones as u32));
+        if tens == 1 {
+            let s2 = match ones {
+                0 => "ten",
+                1 => "eleven",
+                2 => "twelve",
+                3 => "thirteen",
+                4 => "fourteen",
+                5 => "fifteen",
+                6 => "sixteen",
+                7 => "seventeen",
+                8 => "eighteen",
+                9 => "nineteen",
+                _ => panic!("can't happen")
+            };
+            s.push_str(s2);
+        }
+        else {
+            let encoded_tens = match tens {
+                2 => "twenty",
+                3 => "thirty",
+                4 => "forty",
+                5 => "fifty",
+                6 => "sixty",
+                7 => "seventy",
+                8 => "eighty",
+                9 => "ninety",
+                0 => "",
+                _ => panic!("10 to 19 is special case")
+            };
+            s.push_str(encoded_tens);
+            if ones > 0 {
+                s.push('-');
+                s.push_str(&encode(ones as u32));
+            }
         }
         s
     }
