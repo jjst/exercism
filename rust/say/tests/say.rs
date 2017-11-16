@@ -66,7 +66,21 @@ fn test_one_hundred_twelve() {
 }
 
 #[test]
-#[ignore]
+fn test_chunks_zero() {
+    assert_eq!(say::chunks(0), vec![0]);
+}
+
+#[test]
+fn test_chunks_one_hundred_twelve() {
+    assert_eq!(say::chunks(112), vec![112]);
+}
+
+#[test]
+fn test_chunks_one_thousand() {
+    assert_eq!(say::chunks(1000), vec![0,1]);
+}
+
+#[test]
 fn test_one_thousand() {
     assert_eq!(say::encode(1000), String::from("one thousand"));
 }

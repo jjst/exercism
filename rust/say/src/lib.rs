@@ -4,6 +4,29 @@
 //
 
 pub fn encode(number: u32) -> String {
+    let mut chunks = chunks(number);
+    let powers = vec![
+        "",
+        "thousand",
+        "million",
+        "billion",
+        "trillion",
+        "quadrillion",
+        "quintillion",
+        "sextillion"
+    ];
+    let hundreds = chunks.pop();
+    let mut s = String::new();
+    for (&chunk, &power) in chunks.iter().zip(powers.iter()).rev() {
+        s.push_str(&encode_hundreds(chunk as u32));
+        s.push(' ');
+        s.push_str(&power);
+    }
+    s.push_str(&encode_hundreds(hundreds.unwrap() as u32));
+    s
+}
+
+pub fn encode_hundreds(number: u32) -> String {
     if number < 10 {
         let s = match number {
             0 => "zero",
@@ -81,4 +104,18 @@ fn digits(number: u32) -> Vec<u8> {
         n /= 10;
     }
     digits
+}
+
+pub fn chunks(number: u32) -> Vec<u8> {
+    let mut chunks = Vec::new();
+    if number == 0 {
+        chunks.push(0);
+    } else {
+        let mut n = number;
+        while n > 0 {
+            chunks.push((n % 1000) as u8);
+            n /= 1000;
+        }
+    }
+    chunks
 }
