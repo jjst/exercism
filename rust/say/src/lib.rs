@@ -15,14 +15,14 @@ pub fn encode(number: u32) -> String {
         "quintillion",
         "sextillion"
     ];
-    let hundreds = chunks.pop();
+    let hundreds = chunks.pop().unwrap();
     let mut s = String::new();
     for (&chunk, &power) in chunks.iter().zip(powers.iter()).rev() {
         s.push_str(&encode_hundreds(chunk as u32));
         s.push(' ');
         s.push_str(&power);
     }
-    s.push_str(&encode_hundreds(hundreds.unwrap() as u32));
+    s.push_str(&encode_hundreds(hundreds as u32));
     s
 }
 
