@@ -91,7 +91,6 @@ fn test_one_thousand() {
 }
 
 #[test]
-#[ignore]
 fn test_one_thousand_two_hundred_thirty_four() {
     assert_eq!(say::encode(1234), String::from("one thousand two hundred thirty-four"));
 }

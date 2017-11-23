@@ -15,21 +15,16 @@ pub fn encode(number: u32) -> String {
         "sextillion"
     ];
     let (&hundreds, rest) = chunks.split_first().unwrap();
-    println!("{:?}", hundreds);
-    println!("{:?}", chunks);
-    let mut s = String::new();
-    for (&chunk, &power) in rest.iter().zip(powers.iter()).rev() {
-        println!("{:?} ${:?}", chunk, power);
-        if chunk != 0 {
-            s.push_str(&encode_hundreds(chunk as u32));
-            s.push(' ');
-            s.push_str(&power);
-        }
-    }
+    let mut parts: Vec<String> = rest.iter()
+        .zip(powers.iter())
+        .rev()
+        .filter(|&(&chunk, _)| chunk != 0)
+        .map(|(&chunk, power)| format!("{} {}", encode_hundreds(chunk as u32), power))
+        .collect();
     if hundreds != 0 || number == 0 {
-        s.push_str(&encode_hundreds(hundreds as u32));
+        parts.push(encode_hundreds(hundreds as u32));
     }
-    s
+    parts.join(" ")
 }
 
 pub fn encode_hundreds(number: u32) -> String {
