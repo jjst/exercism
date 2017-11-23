@@ -107,14 +107,14 @@ fn digits(number: u32) -> Vec<u8> {
     digits
 }
 
-pub fn chunks(number: u32) -> Vec<u8> {
+pub fn chunks(number: u32) -> Vec<u16> {
     let mut chunks = Vec::new();
     if number == 0 {
         chunks.push(0);
     } else {
         let mut n = number;
         while n > 0 {
-            chunks.push((n % 1000) as u8);
+            chunks.push((n % 1000) as u16);
             n /= 1000;
         }
     }
