@@ -124,7 +124,6 @@ fn test_one_billion() {
 }
 
 #[test]
-#[ignore]
 fn test_987654321123() {
     assert_eq!(say::encode(987_654_321_123),
                String::from("nine hundred eighty-seven billion \

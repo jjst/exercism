@@ -3,7 +3,7 @@
 // below normal exercise description.
 //
 
-pub fn encode(number: u32) -> String {
+pub fn encode(number: u64) -> String {
     let mut chunks = chunks(number);
     let powers = vec![
         "thousand",
@@ -19,15 +19,15 @@ pub fn encode(number: u32) -> String {
         .zip(powers.iter())
         .rev()
         .filter(|&(&chunk, _)| chunk != 0)
-        .map(|(&chunk, power)| format!("{} {}", encode_hundreds(chunk as u32), power))
+        .map(|(&chunk, power)| format!("{} {}", encode_chunk(chunk as u16), power))
         .collect();
     if hundreds != 0 || number == 0 {
-        parts.push(encode_hundreds(hundreds as u32));
+        parts.push(encode_chunk(hundreds as u16));
     }
     parts.join(" ")
 }
 
-pub fn encode_hundreds(number: u32) -> String {
+pub fn encode_chunk(number: u16) -> String {
     if number < 10 {
         let s = match number {
             0 => "zero",
@@ -50,7 +50,7 @@ pub fn encode_hundreds(number: u32) -> String {
         let mut s = String::new();
         match digits.get(2) {
             Some(&d) => {
-                s.push_str(&encode(d as u32));
+                s.push_str(&encode_chunk(d as u16));
                 s.push_str(" hundred");
                 if ones != 0 || tens != 0 {
                     s.push(' ');
@@ -90,14 +90,14 @@ pub fn encode_hundreds(number: u32) -> String {
             s.push_str(encoded_tens);
             if ones > 0 {
                 s.push('-');
-                s.push_str(&encode(ones as u32));
+                s.push_str(&encode_chunk(ones as u16));
             }
         }
         s
     }
 }
 
-fn digits(number: u32) -> Vec<u8> {
+fn digits(number: u16) -> Vec<u8> {
     let mut digits = Vec::new();
     let mut n = number;
     while n > 0 {
@@ -107,7 +107,7 @@ fn digits(number: u32) -> Vec<u8> {
     digits
 }
 
-pub fn chunks(number: u32) -> Vec<u16> {
+pub fn chunks(number: u64) -> Vec<u16> {
     let mut chunks = Vec::new();
     if number == 0 {
         chunks.push(0);
