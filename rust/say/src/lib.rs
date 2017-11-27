@@ -89,7 +89,9 @@ pub fn encode_chunk(number: u16) -> String {
             };
             s.push_str(encoded_tens);
             if ones > 0 {
-                s.push('-');
+                if tens != 0 {
+                    s.push('-');
+                }
                 s.push_str(&encode_chunk(ones as u16));
             }
         }

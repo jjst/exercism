@@ -136,7 +136,6 @@ fn test_987654321123() {
   This test is only if you implemented full parsing for u64 type.
 */
 #[test]
-#[ignore]
 fn test_max_u64() {
     assert_eq!(say::encode(9_223_372_036_854_775_807),
                String::from("nine quintillion two hundred twenty-three \
