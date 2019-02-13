@@ -10,11 +10,14 @@ data Planet = Mercury
             | Neptune
 
 ageOn :: Planet -> Float -> Float
-ageOn Earth      = (/ 31557600.0)
-ageOn Mercury    = (ageOn Earth) . (/ 0.2408467)
-ageOn Venus      = (ageOn Earth) . (/ 0.61519726)
-ageOn Mars       = (ageOn Earth) . (/ 1.8808158)
-ageOn Jupiter    = (ageOn Earth) . (/ 11.862615)
-ageOn Saturn     = (ageOn Earth) . (/ 29.447498)
-ageOn Uranus     = (ageOn Earth) . (/ 84.016846)
-ageOn Neptune    = (ageOn Earth) . (/ 164.79132)
+ageOn Earth       = (/ 31557600.0)
+ageOn otherPlanet = (ageOn Earth) . (/ orbitalPeriodInEarthYears otherPlanet)
+     where
+            orbitalPeriodInEarthYears Mercury    = 0.2408467
+            orbitalPeriodInEarthYears Venus      = 0.61519726
+            orbitalPeriodInEarthYears Earth      = 1
+            orbitalPeriodInEarthYears Mars       = 1.8808158
+            orbitalPeriodInEarthYears Jupiter    = 11.862615
+            orbitalPeriodInEarthYears Saturn     = 29.447498
+            orbitalPeriodInEarthYears Uranus     = 84.016846
+            orbitalPeriodInEarthYears Neptune    = 164.79132
